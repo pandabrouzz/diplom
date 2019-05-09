@@ -35,13 +35,14 @@
             this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.date_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.current_lux_value = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.thread_timer = new System.Windows.Forms.Timer(this.components);
             this.top_menuStrip = new System.Windows.Forms.MenuStrip();
             this.COM_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.port_label = new System.Windows.Forms.Label();
             this.connection_label = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.top_menuStrip.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -95,7 +96,7 @@
             this.top_menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.top_menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.COM_ToolStripMenuItem,
-            this.выходToolStripMenuItem});
+            this.exitToolStripMenuItem});
             this.top_menuStrip.Location = new System.Drawing.Point(0, 0);
             this.top_menuStrip.Name = "top_menuStrip";
             this.top_menuStrip.Size = new System.Drawing.Size(553, 28);
@@ -110,12 +111,12 @@
             this.COM_ToolStripMenuItem.DropDownOpening += new System.EventHandler(this.COM_ToolStripMenuItem_DropDownOpening);
             this.COM_ToolStripMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.COM_ToolStripMenuItem_DropDownItemClicked);
             // 
-            // выходToolStripMenuItem
+            // exitToolStripMenuItem
             // 
-            this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            this.выходToolStripMenuItem.Size = new System.Drawing.Size(65, 24);
-            this.выходToolStripMenuItem.Text = "Выход";
-            this.выходToolStripMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(65, 24);
+            this.exitToolStripMenuItem.Text = "Выход";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // port_label
             // 
@@ -152,11 +153,22 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(557, 24);
             this.tableLayoutPanel1.TabIndex = 8;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(180, 31);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(553, 314);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.on_button);
@@ -183,13 +195,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn number;
         private System.Windows.Forms.DataGridViewTextBoxColumn date_time;
         private System.Windows.Forms.DataGridViewTextBoxColumn current_lux_value;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer thread_timer;
         private System.Windows.Forms.MenuStrip top_menuStrip;
         private System.Windows.Forms.ToolStripMenuItem COM_ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem выходToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.Label port_label;
         private System.Windows.Forms.Label connection_label;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Button button1;
     }
 }
 

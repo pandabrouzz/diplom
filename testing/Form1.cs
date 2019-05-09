@@ -16,7 +16,7 @@ namespace testing
     {
         static SerialPort serialPort = new SerialPort("COM3", 9600);
         bool isConnected = false; //флаг коннекта к плате
-        bool on_state = true;
+        bool on_state = true;   //флан подключения
         public Form1()
         {
             InitializeComponent();
@@ -43,7 +43,10 @@ namespace testing
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (serialPort.IsOpen)
+            {
+                serialPort.Write("0");
                 serialPort.Close();
+            }
         }
 
         private void on_button_Click(object sender, EventArgs e)
@@ -73,17 +76,12 @@ namespace testing
         {
             on_button.Text = "ON";
             System.Threading.Thread.Sleep(500);
-            timer1.Tick += OnTimedEvent;
-            timer1.Interval = 1000;
-            timer1.Start();
+            thread_timer.Tick += OnTimedEvent;
+            thread_timer.Interval = 1000;
+            thread_timer.Start();
 
             connection_label.Text = "Порт закрыт";
             port_label.Text = "COM порт не назначен";
-        }
-
-        private void выходToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void COM_ToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
@@ -106,6 +104,18 @@ namespace testing
             serialPort.Open();
             connection_label.Text = "Порт открыт";
             port_label.Text = selectedPort;
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            serialPort.Write("2");
+            System.Threading.Thread.Sleep(500);
+            serialPort.WriteLine("1100");
         }
     }
 }
