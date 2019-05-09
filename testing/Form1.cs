@@ -14,28 +14,36 @@ namespace testing
 {
     public partial class Form1 : Form
     {
-        static SerialPort serialPort = new SerialPort("COM3", 9600);
+        public static SerialPort serialPort = new SerialPort("COM3", 9600);
         bool isConnected = false; //флаг коннекта к плате
         bool on_state = true;   //флан подключения
+        public static string s;
+        Thread myThread = new Thread(new ThreadStart(AddToDG));
+        public static void AddToDG()
+        {
+            s = serialPort.ReadLine();
+        }
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void OnTimedEvent(object sender, EventArgs myEventArgs)
+        void OnTimedEvent(object sender, EventArgs myEventArgs)
         {
             if (!serialPort.IsOpen) return;
             try // так как после закрытия окна таймер еще может выполнится или предел ожидания может быть превышен
             {
+                myThread.Start();
                 serialPort.DiscardInBuffer(); // удалим накопившееся в буфере
-                string strFromPort = serialPort.ReadLine(); // считаем последнее значение 
-                int rowNumber = dataGridView1.Rows.Add();                
+                //string strFromPort = serialPort.ReadLine(); // считаем последнее значение 
+                int rowNumber = dataGridView1.Rows.Add();
                 dataGridView1.Rows[rowNumber].Cells[0].Value = rowNumber;
                 dataGridView1.Rows[rowNumber].Cells[1].Value = System.DateTime.Now;
-                dataGridView1.Rows[rowNumber].Cells[2].Value = strFromPort;
+                dataGridView1.Rows[rowNumber].Cells[2].Value = s;
                 dataGridView1.CurrentCell.Selected = false;
                 dataGridView1.CurrentCell = dataGridView1.Rows[rowNumber].Cells[2];
                 dataGridView1.Rows[rowNumber].Cells[2].Selected = true;
+                myThread.Interrupt();
             }
             catch { }
         }
@@ -116,6 +124,12 @@ namespace testing
             serialPort.Write("2");
             System.Threading.Thread.Sleep(500);
             serialPort.WriteLine("1100");
+        }
+
+        private void form2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PC_control pC_Control = new PC_control();
+            pC_Control.Show();
         }
     }
 }
