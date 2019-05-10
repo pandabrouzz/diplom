@@ -25,8 +25,17 @@ namespace testing
 
         private void PC_button_click(object sender, EventArgs e)
         {
-            ((Button)sender).BackColor = Color.Green;
-            status_array[flowLayoutPanel1.Controls.GetChildIndex((Button)sender)] = 1;
+            int button_id = flowLayoutPanel1.Controls.GetChildIndex((Button)sender);
+            if (status_array[button_id] == 0)
+            {
+                ((Button)sender).BackColor = Color.Green;
+                status_array[button_id] = 1;
+            }
+            else
+            {
+                ((Button)sender).BackColor = Color.Red;
+                status_array[button_id] = 0;
+            }
         }
 
         private void send_button_Click(object sender, EventArgs e)

@@ -39,11 +39,11 @@
             this.top_menuStrip = new System.Windows.Forms.MenuStrip();
             this.COM_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.form2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.port_label = new System.Windows.Forms.Label();
             this.connection_label = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
-            this.form2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.top_menuStrip.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -120,6 +120,13 @@
             this.exitToolStripMenuItem.Text = "Выход";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
+            // form2ToolStripMenuItem
+            // 
+            this.form2ToolStripMenuItem.Name = "form2ToolStripMenuItem";
+            this.form2ToolStripMenuItem.Size = new System.Drawing.Size(61, 24);
+            this.form2ToolStripMenuItem.Text = "form2";
+            this.form2ToolStripMenuItem.Click += new System.EventHandler(this.form2ToolStripMenuItem_Click);
+            // 
             // port_label
             // 
             this.port_label.AutoSize = true;
@@ -164,13 +171,6 @@
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // form2ToolStripMenuItem
-            // 
-            this.form2ToolStripMenuItem.Name = "form2ToolStripMenuItem";
-            this.form2ToolStripMenuItem.Size = new System.Drawing.Size(61, 24);
-            this.form2ToolStripMenuItem.Text = "form2";
-            this.form2ToolStripMenuItem.Click += new System.EventHandler(this.form2ToolStripMenuItem_Click);
             // 
             // Form1
             // 
