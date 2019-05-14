@@ -122,6 +122,8 @@ namespace testing
         {
             PC_control pC_Control = new PC_control();
             pC_Control.Show();
+            
+
         }
     }
 }
