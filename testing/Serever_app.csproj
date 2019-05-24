@@ -61,12 +61,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Server_main_form.cs">
+    <Compile Include="cab.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Server_main_form.Designer.cs">
-      <DependentUpon>Server_main_form.cs</DependentUpon>
+    <Compile Include="cab.Designer.cs">
+      <DependentUpon>cab.cs</DependentUpon>
     </Compile>
+    <Compile Include="ClientReadData.cs" />
     <Compile Include="PC_control.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,8 +76,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Server_main_form.resx">
-      <DependentUpon>Server_main_form.cs</DependentUpon>
+    <EmbeddedResource Include="cab.resx">
+      <DependentUpon>cab.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PC_control.resx">
       <DependentUpon>PC_control.cs</DependentUpon>

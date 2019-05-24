@@ -15,14 +15,18 @@ namespace testing
     public partial class PC_control : Form
     {
         int[] status_array;
-        
-        public PC_control()
+        TcpClient client;
+        public PC_control(TcpClient tcpClient)
         {
             InitializeComponent();
             foreach (var item in flowLayoutPanel1.Controls)
                 if (item is Button)
+                {
                     ((Button)item).Click += PC_button_click;
+                    ((Button)item).BackColor = Color.Red;
+                }
             status_array = new int[flowLayoutPanel1.Controls.Count];
+            client = tcpClient;
         }
         
         private void PC_button_click(object sender, EventArgs e)
@@ -42,8 +46,10 @@ namespace testing
 
         private void send_button_Click(object sender, EventArgs e)
         {
-            TcpClient client = new TcpClient("192.168.0.6", 2000);
-            NetworkStream stream;
+            client = cabForm.listener.AcceptTcpClient();
+
+            NetworkStream stream = client.GetStream();
+            
             string outMessage = "";
             foreach (int a in status_array)
             {
@@ -53,29 +59,20 @@ namespace testing
             string c = "2";
             Byte[] data = Encoding.UTF8.GetBytes(outMessage);
             Byte[] s2 = Encoding.UTF8.GetBytes(c);
-            stream = client.GetStream();
             try
             {
                 //Отправка сообщения
                 stream.Write(s2, 0, s2.Length);
                 stream.Write(data, 0, data.Length);
-                // Получение ответа
-                Byte[] readingData = new Byte[256];
-                String responseData = String.Empty;
-                StringBuilder completeMessage = new StringBuilder();
-                int numberOfBytesRead = 0;
-                do
-                {
-                    numberOfBytesRead = stream.Read(readingData, 0, readingData.Length);
-                    completeMessage.AppendFormat("{0}", Encoding.UTF8.GetString(readingData, 0, numberOfBytesRead));
-                }
-                while (stream.DataAvailable);
-                MessageBox.Show(Convert.ToString(completeMessage));
+                stream.Close();
+                client.Close();
             }
             finally
             {
-                stream.Close();
-                client.Close();
+                if (stream != null)
+                    stream.Close();
+                if (client != null)
+                    client.Close();
             }
             
         }
